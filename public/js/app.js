@@ -1861,6 +1861,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -1873,13 +1896,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
@@ -1893,14 +1921,14 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('weather-comp', __webpack_require__(/*! ./components/WeatherApp.vue */ "./resources/js/components/WeatherApp.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0__.default.component('weather-comp', __webpack_require__(/*! ./components/WeatherApp.vue */ "./resources/js/components/WeatherApp.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
+var app = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
   el: '#app'
 });
 
@@ -37428,22 +37456,69 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "text-white mb-8" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "weather-container font-sans w-128 max-w-lg rounded-lg overflow-hidden bg-gray-900 shadow-lg mt-8"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "current-weather flex items-center justify-between px-6 py-8"
+            },
+            [
+              _c("div", { staticClass: "flex items-center" }, [
+                _c("div", [
+                  _c("div", { staticClass: "text-6xl font-semibold" }, [
+                    _vm._v("18°C")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("Feels like 2°C")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mx-5" }, [
+                  _c("div", { staticClass: "font-semibold" }, [_vm._v("sun")]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("harrogate")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", [_c("div", [_vm._v("icon")])])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "upcoming-weather text-sm bg-gray-800 px-6 py-8 overflow-hidden"
+            },
+            [
+              _c("div", { staticClass: "flex items-center" }, [
+                _c("div", { staticClass: "w-1/6 text-lg text-gray-200" }, [
+                  _vm._v("MON")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-4/6 px-4 flex items-center" }, [
+                  _c("div", [_vm._v("icon")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ml-3" }, [_vm._v("sun")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/6 text-right" }, [
+                  _c("div", [_vm._v("°C")]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("°C")])
+                ])
+              ])
+            ]
+          )
+        ]
+      )
     ])
   }
 ]
