@@ -5,12 +5,12 @@
       <div class="current-weather flex items-center justify-between px-6 py-8">
         <div class="flex items-center">
           <div>
-            <div class="text-6xl font-semibold">°C</div>
-            <div>Feels like °C</div>
+            <div class="text-6xl font-semibold">{{currentTemperature.actual}}°C</div>
+            <div>Feels like {{currentTemperature.feels}}°C</div>
           </div>
           <div class="mx-5">
-            <div class="font-semibold">Sunny</div>
-            <div>Harrogate, United Kingdom</div>
+            <div class="font-semibold">{{ currentTemperature.summary }}</div>
+            <div>{{location.name}}</div>
           </div>
         </div>
         <div>
@@ -42,15 +42,39 @@
         mounted() {
             this.fetchData()
         },
+      data(){
+        return{
+          currentTemperature: {
+            actual: '',
+            feels: '',
+            summary: '',
+            icon: ''
+          },
+          daily: [
+
+          ],
+          location:{
+            name: 'Harrogate',
+            lat: 53.992119,
+            lng: -1.541812,
+          }
+        }
+      },
       methods:{
           fetchData(){
             fetch(`/api/weather?lat=${this.location.lat}&lng=${this.location.lng}`)
             .then(response => response.json())
             .then(data => {
               console.log(data)
+              this.currentTemperature.actual = Math.round(data.main.temp)
+              this.currentTemperature.feels = Math.round(data.main.feels_like)
+              this.currentTemperature.summary = data.weather[0].description
+
+
             })
           }
       }
     }
 </script>
+
 
