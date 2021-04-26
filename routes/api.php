@@ -21,13 +21,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/weather', function(){
-    $apiKey = config('services.openwathermap.key');
+Route::get('/currentWeather', function () {
+    $apikey = config('services.openweathermap.key');
     $lat = request('lat');
     $lng = request('lng');
-    $response = Zttp::get("https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lng&appid=$apiKey&units=metric");
+    $response = Zttp::get("http://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lng&appid=$apikey&units=metric");
     return $response->json();
 });
 
-
-         //   lng: -1.541812,
+Route::get('/forecast', function () {
+    $apikey = config('services.openweathermap.key');
+    $lat = request('lat');
+    $lng = request('lng');
+    $response = Zttp::get("http://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lng&exclude={minutely,hourly}&appid=$apikey&units=metric");
+    return $response->json();
+});

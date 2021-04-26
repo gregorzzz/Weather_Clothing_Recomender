@@ -1884,6 +1884,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     this.fetchData();
@@ -1908,16 +1914,33 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
 
-      fetch("/api/weather?lat=".concat(this.location.lat, "&lng=").concat(this.location.lng)).then(function (response) {
+      fetch( //`/api/currentWeather?lat=${this.location.lat}&long=${this.location.long}`
+      "https://api.openweathermap.org/data/2.5/weather?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric").then(function (response) {
         return response.json();
       }).then(function (data) {
         console.log(data);
         _this.currentTemperature.actual = Math.round(data.main.temp);
         _this.currentTemperature.feels = Math.round(data.main.feels_like);
-        _this.currentTemperature.summary = data.weather[0].description;
+        _this.currentTemperature.summary = data.weather[0].description, _this.currentTemperature.icon = "http://openweathermap.org/img/wn/".concat(data.weather[0].icon, "@2x.png"), _this.location.name = data.name;
       });
+      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric" //`/api/forecast?lat=${this.location.lat}&long=${this.location.long}`
+      ).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this.daily = data.daily;
+      });
+    },
+    toWeekDay: function toWeekDay(timestamp) {
+      var newDate = new Date(timestamp * 1000);
+      var days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+      return days[newDate.getDay()];
+    },
+    forecastIcon: function forecastIcon(icon) {
+      var iconId = icon;
+      return "http://openweathermap.org/img/wn/".concat(iconId, "@2x.png");
     }
-  }
+  },
+  computed: {}
 });
 
 /***/ }),
@@ -37516,54 +37539,61 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c("div", [
+              _c("img", { attrs: { src: _vm.currentTemperature.icon } })
+            ])
           ]
         ),
         _vm._v(" "),
-        _vm._m(1)
+        _c(
+          "div",
+          {
+            staticClass:
+              "upcoming-weather text-sm bg-gray-800 px-6 py-8 overflow-hidden"
+          },
+          _vm._l(_vm.daily, function(day, index) {
+            return _c(
+              "div",
+              {
+                key: day.dt,
+                staticClass: "flex items-center mt-8",
+                class: { "mt-8": index > 0 }
+              },
+              [
+                _c("div", { staticClass: "w-1/6 text-lg text-gray-200" }, [
+                  _vm._v(_vm._s(_vm.toWeekDay(day.dt)))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-2/3 px-4 flex items-center" }, [
+                  _c("div", [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.forecastIcon(day.weather[0].icon),
+                        width: "70px"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ml-3" }, [
+                    _vm._v(_vm._s(day.weather[0].description))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/6 text-right" }, [
+                  _c("div", [_vm._v(_vm._s(Math.round(day.temp.max)) + "°C")]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(Math.round(day.temp.min)) + "°C")])
+                ])
+              ]
+            )
+          }),
+          0
+        )
       ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("div", [_vm._v("icon")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "upcoming-weather text-sm bg-gray-800 px-6 py-8 overflow-hidden"
-      },
-      [
-        _c("div", { staticClass: "flex items-center mt-8" }, [
-          _c("div", { staticClass: "w-1/6 text-lg text-gray-200" }, [
-            _vm._v("MON")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-4/6 px-4 flex items-center" }, [
-            _c("div", [_vm._v("icon")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ml-3" }, [_vm._v("Mostly Sunny")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-1/6 text-right" }, [
-            _c("div", [_vm._v("16°C")]),
-            _vm._v(" "),
-            _c("div", [_vm._v("1°C")])
-          ])
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
