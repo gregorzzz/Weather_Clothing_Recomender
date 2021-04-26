@@ -1886,7 +1886,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.fetchData();
+  },
+  methods: {
+    fetchData: function fetchData() {
+      fetch("/api/weather?lat=".concat(this.location.lat, "&lng=").concat(this.location.lng)).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log(data);
+      });
+    }
   }
 });
 
@@ -37474,16 +37483,18 @@ var staticRenderFns = [
               _c("div", { staticClass: "flex items-center" }, [
                 _c("div", [
                   _c("div", { staticClass: "text-6xl font-semibold" }, [
-                    _vm._v("18°C")
+                    _vm._v("°C")
                   ]),
                   _vm._v(" "),
-                  _c("div", [_vm._v("Feels like 2°C")])
+                  _c("div", [_vm._v("Feels like °C")])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "mx-5" }, [
-                  _c("div", { staticClass: "font-semibold" }, [_vm._v("sun")]),
+                  _c("div", { staticClass: "font-semibold" }, [
+                    _vm._v("Sunny")
+                  ]),
                   _vm._v(" "),
-                  _c("div", [_vm._v("harrogate")])
+                  _c("div", [_vm._v("Harrogate, United Kingdom")])
                 ])
               ]),
               _vm._v(" "),
@@ -37498,7 +37509,7 @@ var staticRenderFns = [
                 "upcoming-weather text-sm bg-gray-800 px-6 py-8 overflow-hidden"
             },
             [
-              _c("div", { staticClass: "flex items-center" }, [
+              _c("div", { staticClass: "flex items-center mt-8" }, [
                 _c("div", { staticClass: "w-1/6 text-lg text-gray-200" }, [
                   _vm._v("MON")
                 ]),
@@ -37506,13 +37517,13 @@ var staticRenderFns = [
                 _c("div", { staticClass: "w-4/6 px-4 flex items-center" }, [
                   _c("div", [_vm._v("icon")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "ml-3" }, [_vm._v("sun")])
+                  _c("div", { staticClass: "ml-3" }, [_vm._v("Mostly Sunny")])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "w-1/6 text-right" }, [
-                  _c("div", [_vm._v("°C")]),
+                  _c("div", [_vm._v("16°C")]),
                   _vm._v(" "),
-                  _c("div", [_vm._v("°C")])
+                  _c("div", [_vm._v("1°C")])
                 ])
               ])
             ]

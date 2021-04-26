@@ -1,7 +1,10 @@
 <?php
 
+use Zttp\Zttp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/weather', function(){
+    $apiKey = config('services.openwathermap.key');
+    $lat = request('lat');
+    $lng = request('lng');
+    $response = Zttp::get("https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lng&appid=$apiKey&units=metric");
+    return $response->json();
+});
+
+
+         //   lng: -1.541812,
