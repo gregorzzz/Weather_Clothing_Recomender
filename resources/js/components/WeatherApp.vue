@@ -50,6 +50,7 @@
         },
       data(){
         return{
+          api_key: process.env.MIX_OPENWEATHER_KEY,
           currentTemperature: {
             actual: '',
             feels: '',
@@ -68,9 +69,7 @@
       },
       methods:{
           fetchData(){
-            fetch(//`/api/currentWeather?lat=${this.location.lat}&long=${this.location.long}`
-              "https://api.openweathermap.org/data/2.5/weather?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric"
-              )
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.location.lat}&lon=${this.location.lng}&appid=${this.api_key}&units=metric`)
             .then(response => response.json())
             .then(data => {
               console.log(data)
@@ -82,9 +81,7 @@
             })
 
             fetch(
-              "https://api.openweathermap.org/data/2.5/onecall?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric"
-              //`/api/forecast?lat=${this.location.lat}&long=${this.location.long}`
-            )
+              `https://api.openweathermap.org/data/2.5/onecall?lat=${this.location.lat}&lon=${this.location.lng}&appid=${this.api_key}&units=metric`)
               .then(response => response.json())
               .then(data => {
                 this.daily = data.daily
@@ -106,4 +103,3 @@
     }
 </script>
 
-"https://api.openweathermap.org/data/2.5/onecall?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric"

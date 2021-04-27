@@ -1896,6 +1896,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      api_key: "8edbfcf3c0d0badddb4b1a4adcfaf403",
       currentTemperature: {
         actual: '',
         feels: '',
@@ -1914,8 +1915,8 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
 
-      fetch( //`/api/currentWeather?lat=${this.location.lat}&long=${this.location.long}`
-      "https://api.openweathermap.org/data/2.5/weather?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric").then(function (response) {
+      fetch( //`/api/currentWeather?lat=${this.location.lat}&lng=${this.location.lng}`
+      "https://api.openweathermap.org/data/2.5/weather?lat=".concat(this.location.lat, "&lon=").concat(this.location.lng, "&appid=").concat(this.api_key, "&units=metric")).then(function (response) {
         return response.json();
       }).then(function (data) {
         console.log(data);
@@ -1923,7 +1924,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.currentTemperature.feels = Math.round(data.main.feels_like);
         _this.currentTemperature.summary = data.weather[0].description, _this.currentTemperature.icon = "http://openweathermap.org/img/wn/".concat(data.weather[0].icon, "@2x.png"), _this.location.name = data.name;
       });
-      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric" //`/api/forecast?lat=${this.location.lat}&long=${this.location.long}`
+      fetch("https://api.openweathermap.org/data/2.5/onecall?lat=".concat(this.location.lat, "&lon=").concat(this.location.lng, "&appid=").concat(this.api_key, "&units=metric") //`/api/forecast?lat=${this.location.lat}&lng=${this.location.lng}`
       ).then(function (response) {
         return response.json();
       }).then(function (data) {
