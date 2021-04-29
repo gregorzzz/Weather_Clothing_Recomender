@@ -81,7 +81,8 @@ class wardrobeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $wardrobe = Wardrobe::find($id);
+        return view('edit')->with('wardrobe', $wardrobe);
     }
 
     /**
