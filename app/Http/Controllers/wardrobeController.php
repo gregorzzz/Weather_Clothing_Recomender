@@ -120,6 +120,8 @@ class wardrobeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $wardrobe = wardrobeController::find($id);
+        $wardrobe->delete();
+        return Redirect::to("wardrobe");
     }
 }
