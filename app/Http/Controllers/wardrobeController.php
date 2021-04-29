@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wardrobe;
+use Illuminate\Console\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Livewire\Response;
 
 class wardrobeController extends Controller
 {
@@ -16,7 +21,7 @@ class wardrobeController extends Controller
     {
         $wardrobe = Wardrobe::all();
 
-        return view('wardrobe', ['wardrobe'=>$wardrobe]);
+        return view('pages.wardrobe', ['wardrobe'=>$wardrobe]);
     }
 
     /**
@@ -26,18 +31,35 @@ class wardrobeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $messages = array(
+          'name'=>"Clothing name cannot be empty",
+        );
+
+        $rules=array(
+            'type'=>'required',
+            'name'=>'required',
+            'image'=>'required',
+        );
+        $validator = $request->validate($rules,$messages);
+
+        $wardrobe = new Wardrobe;
+        $wardrobe -> clothingType = $request->input('type');
+        $wardrobe -> clothingName = $request->input('name');
+        $wardrobe -> pictureId = $request->input('image')->store('images');
+
+        $wardrobe->save();
+        return Redirect::to("wardrobe");
     }
 
     /**

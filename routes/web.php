@@ -23,3 +23,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/wardrobe', [wardrobeController::class,'index'])->name('wardrobe-index');
+
+Route::get('/wardrobe/create', [wardrobeController::class,'create'])->name('pages.create');
+Route::post('/wardrobe/create', [wardrobeController::class,'create'])->name('pages.create');
+Route::post('/wardrobe',[wardrobeController::class,'store']);
+
