@@ -18,7 +18,7 @@ class CreateWardrobe extends Migration
             $table->integer('user_id');
             $table->string('clothingType', 10);
             $table->string('clothingName', 255);
-            $table->string('');
+            $table->string('pictureId')->default("no_image.png")->nullable();
         });
     }
 

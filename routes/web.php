@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\wardrobeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/home', function () {
-    return view('pages.home');
-});
-
-
+Route::get('/wardrobe', [wardrobeController::class,'index'])->name('wardrobe-index');

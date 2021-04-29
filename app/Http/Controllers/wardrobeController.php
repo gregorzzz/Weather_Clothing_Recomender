@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wardrobe;
 use Illuminate\Http\Request;
 
 class wardrobeController extends Controller
@@ -9,11 +10,13 @@ class wardrobeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $wardrobe = Wardrobe::all();
+
+        return view('wardrobe', ['wardrobe'=>$wardrobe]);
     }
 
     /**
