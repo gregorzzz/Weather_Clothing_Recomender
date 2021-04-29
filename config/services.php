@@ -31,7 +31,7 @@ return [
     ],
 
     'openweathermap' => [
-        'key' => env('OPENWEATHER_KEY'),
+        'key' => env('MIX_OPENWEATHER_KEY'),
 
     ],
 
