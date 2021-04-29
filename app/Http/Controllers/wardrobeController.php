@@ -94,7 +94,22 @@ class wardrobeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = array(
+            'name'=>"Clothing name cannot be empty",
+        );
+
+        $rules=array(
+            'name'=>'required',
+            'image'=>'required',
+        );
+        $validator = $request->validate($rules,$messages);
+
+        $wardrobe = wardrobeController::find($id);
+        $wardrobe -> clothingName = $request->input('name');
+        $wardrobe -> pictureId = $request->input('image')->store('images');
+
+        $wardrobe->save();
+        return Redirect::to("wardrobe");
     }
 
     /**

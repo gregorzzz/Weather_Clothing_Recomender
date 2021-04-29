@@ -7,7 +7,7 @@
     <div class="flex justify-center px-8 py-2 m-2">
         <div class="w-full max-w-sm bg-white bg-white rounded-lg w-3/12 mt-10 ml-6 flex-wrap">
             {{ HTML::ul($errors->all()) }}
-            {{ Form::model($wardrobe,array('route' => array('product.update',$wardrobe->id),'method' => 'PATCH','enctype'=>"multipart/form-data")) }}
+            {{ Form::model($wardrobe,array('route' => array('wardrobe.update',$wardrobe->id),'method' => 'PATCH','enctype'=>"multipart/form-data")) }}
             <h1 class="text-center text-3xl">Edit Product</h1>
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
