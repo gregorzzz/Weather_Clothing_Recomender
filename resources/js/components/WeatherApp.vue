@@ -24,6 +24,7 @@
           :key="day.dt"
           :class="{'mt-8': index > 0}"
           class="flex items-center mt-8"
+          v-if="index < 5"
         >
           <div class="w-1/6 text-lg text-gray-200">{{toWeekDay(day.dt)}}</div>
           <div class="w-2/3 px-4 flex items-center">

@@ -1890,6 +1890,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     this.fetchData();
@@ -37551,40 +37552,46 @@ var render = function() {
               "upcoming-weather text-sm bg-gray-800 px-6 py-8 overflow-hidden"
           },
           _vm._l(_vm.daily, function(day, index) {
-            return _c(
-              "div",
-              {
-                key: day.dt,
-                staticClass: "flex items-center mt-8",
-                class: { "mt-8": index > 0 }
-              },
-              [
-                _c("div", { staticClass: "w-1/6 text-lg text-gray-200" }, [
-                  _vm._v(_vm._s(_vm.toWeekDay(day.dt)))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "w-2/3 px-4 flex items-center" }, [
-                  _c("div", [
-                    _c("img", {
-                      attrs: {
-                        src: _vm.forecastIcon(day.weather[0].icon),
-                        width: "70px"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "ml-3" }, [
-                    _vm._v(_vm._s(day.weather[0].description))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "w-1/6 text-right" }, [
-                  _c("div", [_vm._v(_vm._s(Math.round(day.temp.max)) + "°C")]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v(_vm._s(Math.round(day.temp.min)) + "°C")])
-                ])
-              ]
-            )
+            return index < 5
+              ? _c(
+                  "div",
+                  {
+                    key: day.dt,
+                    staticClass: "flex items-center mt-8",
+                    class: { "mt-8": index > 0 }
+                  },
+                  [
+                    _c("div", { staticClass: "w-1/6 text-lg text-gray-200" }, [
+                      _vm._v(_vm._s(_vm.toWeekDay(day.dt)))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-2/3 px-4 flex items-center" }, [
+                      _c("div", [
+                        _c("img", {
+                          attrs: {
+                            src: _vm.forecastIcon(day.weather[0].icon),
+                            width: "70px"
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ml-3" }, [
+                        _vm._v(_vm._s(day.weather[0].description))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/6 text-right" }, [
+                      _c("div", [
+                        _vm._v(_vm._s(Math.round(day.temp.max)) + "°C")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _vm._v(_vm._s(Math.round(day.temp.min)) + "°C")
+                      ])
+                    ])
+                  ]
+                )
+              : _vm._e()
           }),
           0
         )

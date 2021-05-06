@@ -22,15 +22,10 @@
                 <div class="flex lg:flex-grow items-center" id="example-navbar-info">
                     <ul class="flex flex-col lg:flex-row list-none ml-auto">
                         <li class="nav-item">
-                            <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{route("wardrobe-index")}}">
-                                Wardrobe
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             @if(Route::current())
-                                @can('edit-product')
-                                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{route("pages.create")}}">
-                                        Create
+                                @can('open-wardrobe')
+                                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{route("wardrobe-index")}}">
+                                        Wardrobe
                                     </a>
                                 @endcan
                             @endif
@@ -38,7 +33,14 @@
                         <li class="nav-item">
                             @if (Route::has('login'))
                                 @auth
-                                    <a href="{{ url('/dashboard') }}" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Dashboard</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    this.closest('form').submit();" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                                            Logout
+                                        </a>
+                                    </form>
                                 @else
                                     <a href="{{ route('login') }}" class="px-3 py-2 text-xs text-white inline-flex items-center uppercase font-bold leading-snug ">Login</a>
 
