@@ -13,7 +13,7 @@ class CreateUsedclothing extends Migration
      */
     public function up()
     {
-        Schema::table('usedclothing', function (Blueprint $table) {
+        Schema::create('usedclothing', function (Blueprint $table) {
             $table->id();
             $table->integer('userID');
             $table->integer('clothingID');
@@ -31,7 +31,7 @@ class CreateUsedclothing extends Migration
      */
     public function down()
     {
-        Schema::table('usedclothing', function (Blueprint $table) {
+        Schema::create('usedclothing', function (Blueprint $table) {
             //
         });
     }
