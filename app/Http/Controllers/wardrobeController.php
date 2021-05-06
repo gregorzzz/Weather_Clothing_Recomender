@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UsedClothing;
 use App\Models\Wardrobe;
 use Illuminate\Console\Application;
 use Illuminate\Http\Request;
@@ -19,9 +20,9 @@ class wardrobeController extends Controller
      */
     public function index()
     {
-        $wardrobe = Wardrobe::all();
+        $wardrobes = Wardrobe::all();
 
-        return view('pages.wardrobe', ['wardrobe'=>$wardrobe]);
+        return view('wardrobe', ['wardrobes'=>$wardrobes]);
     }
 
     /**
@@ -53,12 +54,13 @@ class wardrobeController extends Controller
         );
         $validator = $request->validate($rules,$messages);
 
-        $wardrobe = new Wardrobe;
-        $wardrobe -> clothingType = $request->input('type');
-        $wardrobe -> clothingName = $request->input('name');
-        $wardrobe -> pictureId = $request->input('image')->store('images');
+        $wardrobes = new Wardrobe;
+        $wardrobes->user_id = Auth::user()->id;
+        $wardrobes -> clothingType = $request->input('type');
+        $wardrobes -> clothingName = $request->input('name');
+        $wardrobes -> pictureId = $request->file('image')->store('images');
 
-        $wardrobe->save();
+        $wardrobes->save();
         return Redirect::to("wardrobe");
     }
 
@@ -104,11 +106,11 @@ class wardrobeController extends Controller
         );
         $validator = $request->validate($rules,$messages);
 
-        $wardrobe = wardrobeController::find($id);
-        $wardrobe -> clothingName = $request->input('name');
-        $wardrobe -> pictureId = $request->input('image')->store('images');
+        $wardrobes = wardrobeController::find($id);
+        $wardrobes-> clothingName = $request->input('name');
+        $wardrobes -> pictureId = $request->file('image')->store('images');
 
-        $wardrobe->save();
+        $wardrobes->save();
         return Redirect::to("wardrobe");
     }
 
@@ -120,8 +122,45 @@ class wardrobeController extends Controller
      */
     public function destroy($id)
     {
-        $wardrobe = wardrobeController::find($id);
-        $wardrobe->delete();
+        $wardrobes = wardrobeController::find($id);
+        $wardrobes->delete();
         return Redirect::to("wardrobe");
     }
+    /* for used clothing still needs to be tested
+    public function selectColthing(Request $request){
+        $wardrobe = Wardrobe::inRandomOrder()->first();
+        return view('edit')->with('wardrobe', $wardrobe);
+    }
+
+    public function Usedcolthing(Request $request,$id){
+        $messages = array(
+            'title'=>"Title field can't be empty",
+            'mainname'=>"Surname can't be empty",
+            'price'=>"Price can't be empty",
+            'length'=>"Length can't be empty"
+        );
+
+        $rules = array(
+            'title'=>'required',
+            'firstname'=>'required',
+            'mainname'=>'required',
+            'price'=>'required',
+            'length'=>'required',
+        );
+        $validator = $request->validate($rules,$messages);
+
+
+        $wardrobe = Wardrobe::find($id);
+        $used = new UsedClothing($wardrobe);
+        $used-> title = $request->input('title');
+        $used-> fname = $request->input('firstname');
+        $used-> sname = $request->input('mainname');
+        $used-> price = $request->input('price');
+        $used-> length = $request->input('length');
+        $used-> imagename = $request->file('imagename')->store('images');
+
+        $used->save();
+        return Redirect::to("pages.home");
+
+    }*/
 }

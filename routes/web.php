@@ -27,6 +27,6 @@ Route::get('/wardrobe', [wardrobeController::class,'index'])->name('wardrobe-ind
 Route::get('/wardrobe/create', [wardrobeController::class,'create'])->name('pages.create');
 Route::post('/wardrobe/create', [wardrobeController::class,'create'])->name('pages.create');
 Route::post('/wardrobe',[wardrobeController::class,'store']);
-Route::post('/product/{id}',[wardrobeController::class,'show'])->name('product-show');
-Route::get('/product/{id}',[wardrobeController::class,'show'])->name('product-show');
+Route::post('/wardrobe/{id}',[wardrobeController::class,'show'])->name('item-show');
+Route::get('/wardrobe/{id}',[wardrobeController::class,'show'])->name('item-show');
 

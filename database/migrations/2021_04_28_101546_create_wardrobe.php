@@ -13,12 +13,13 @@ class CreateWardrobe extends Migration
      */
     public function up()
     {
-        Schema::table('wardrobe', function (Blueprint $table) {
+        Schema::create('wardrobes', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->string('clothingType', 10);
             $table->string('clothingName', 255);
             $table->string('pictureId')->default("no_image.png")->nullable();
+            $table->timestamps();
         });
     }
 
@@ -29,8 +30,10 @@ class CreateWardrobe extends Migration
      */
     public function down()
     {
-        Schema::table('wardrobe', function (Blueprint $table) {
-            //
+        Schema::create('wardrobe', function (Blueprint $table) {
+
+
+
         });
     }
 }
