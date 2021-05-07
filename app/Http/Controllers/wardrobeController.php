@@ -20,7 +20,8 @@ class wardrobeController extends Controller
      */
     public function index()
     {
-        $wardrobes = Wardrobe::all();
+        $userid = Auth::id();
+        $wardrobes = Wardrobe::where('user_id',$userid)->get();
 
         return view('wardrobe', ['wardrobes'=>$wardrobes]);
     }
