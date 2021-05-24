@@ -148,22 +148,6 @@ class wardrobeController extends Controller
     }
     /* for used clothing still needs to be tested
        public function Usedclothing(Request $request,$id){
-           $messages = array(
-               'title'=>"Title field can't be empty",
-               'mainname'=>"Surname can't be empty",
-               'price'=>"Price can't be empty",
-               'length'=>"Length can't be empty"
-           );
-
-           $rules = array(
-               'title'=>'required',
-               'firstname'=>'required',
-               'mainname'=>'required',
-               'price'=>'required',
-               'length'=>'required',
-           );
-           $validator = $request->validate($rules,$messages);
-
            $res = file_get_contents("https://api.openweathermap.org/data/2.5/weather?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric");
            $data = \GuzzleHttp\json_decode($res);
 
