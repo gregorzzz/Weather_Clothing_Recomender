@@ -53,6 +53,7 @@ class wardrobeController extends Controller
 
         $rules=array(
             'type'=>'required',
+            'material'=>'required',
             'name'=>'required',
             'image'=>'required',
         );
@@ -61,6 +62,7 @@ class wardrobeController extends Controller
         $wardrobes = new Wardrobe;
         $wardrobes->user_id = Auth::user()->id;
         $wardrobes -> clothingType = $request->input('type');
+        $wardrobes -> material = $request->input('material');
         $wardrobes -> clothingName = $request->input('name');
         $wardrobes -> pictureId = $request->file('image')->store('images');
 

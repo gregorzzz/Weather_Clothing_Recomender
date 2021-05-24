@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Material extends Model
 {
     use HasFactory;
+
+    public function material(){
+        return $this->belongsToMany('App\Models\Wardrobe');
+    }
 }

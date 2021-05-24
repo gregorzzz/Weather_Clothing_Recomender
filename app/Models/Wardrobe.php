@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Wardrobe extends Model
 {
     use HasFactory;
+
+    public function texture(){
+        return $this->hasMany('App\Models\Material');
+    }
 }
