@@ -1,8 +1,5 @@
 @extends('layouts.main')
 @section('content')
-    <section hidden="type">
-
-    </section>
 
     <div class="flex justify-center px-8 py-2 m-2">
         <div class="w-full max-w-sm bg-white bg-white rounded-lg w-3/12 mt-10 ml-6 flex-wrap">

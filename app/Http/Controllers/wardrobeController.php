@@ -140,12 +140,14 @@ class wardrobeController extends Controller
         return view('pages.create', ['material' => $materials]);
     }
 
-    public function selectColthing($id){
-        $wardrobes = Wardrobe::inRandomOrder()->first();
-        return view('edit', ['wardrobes'=>$wardrobes]);
+    public function selectClothing($id){
+        $userid = Auth::id();
+        $wardrobes = Wardrobe::where('user_id',$userid)->random(1);
+        return view('pages.recommendation', ['wardrobes'=>$wardrobes]);
+
     }
     /* for used clothing still needs to be tested
-       public function Usedcolthing(Request $request,$id){
+       public function Usedclothing(Request $request,$id){
            $messages = array(
                'title'=>"Title field can't be empty",
                'mainname'=>"Surname can't be empty",
@@ -162,18 +164,30 @@ class wardrobeController extends Controller
            );
            $validator = $request->validate($rules,$messages);
 
+           $res = file_get_contents("https://api.openweathermap.org/data/2.5/weather?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric");
+           $data = \GuzzleHttp\json_decode($res);
+
+           foreach ($data->weather as $weather){
+               $weatherType = $weather->description;
+               $temp = implode(', ', $weather->temp);
+               UsedClothing::updateOrCreate([
+                   'description' => $weatherType,
+                   '$temps' => $temp
+               ]);
+           }
+
+
 
            $wardrobe = Wardrobe::find($id);
            $used = new UsedClothing($wardrobe);
-           $used-> title = $request->input('title');
-           $used-> fname = $request->input('firstname');
-           $used-> sname = $request->input('mainname');
-           $used-> price = $request->input('price');
-           $used-> length = $request->input('length');
-           $used-> imagename = $request->file('imagename')->store('images');
+           $used->userID = Auth::user()->id;
+           $used->clothingID = $wardrobe->id;
+           $used->weather =
+
 
            $used->save();
            return Redirect::to("pages.home");
 
-       }*/
+       }
+    */
 }
