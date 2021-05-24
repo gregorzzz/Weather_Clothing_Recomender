@@ -73,7 +73,8 @@ class wardrobeController extends Controller
      */
     public function show($id)
     {
-        //
+        $wardrobes = Wardrobe::find($id);
+        return view('pages.edit')->with('wardrobes', $wardrobes);
     }
 
     /**
@@ -84,8 +85,8 @@ class wardrobeController extends Controller
      */
     public function edit($id)
     {
-        $wardrobe = Wardrobe::find($id);
-        return view('edit')->with('wardrobe', $wardrobe);
+        $wardrobes = Wardrobe::find($id);
+        return view('pages.edit')->with('wardrobes', $wardrobes);
     }
 
     /**
@@ -127,41 +128,41 @@ class wardrobeController extends Controller
         $wardrobes->delete();
         return Redirect::to("wardrobe");
     }
-    /* for used clothing still needs to be tested
-    public function selectColthing(Request $request){
-        $wardrobe = Wardrobe::inRandomOrder()->first();
-        return view('edit')->with('wardrobe', $wardrobe);
+
+    public function selectColthing($id){
+        $wardrobes = Wardrobe::inRandomOrder()->first();
+        return view('edit', ['wardrobes'=>$wardrobes]);
     }
+    /* for used clothing still needs to be tested
+       public function Usedcolthing(Request $request,$id){
+           $messages = array(
+               'title'=>"Title field can't be empty",
+               'mainname'=>"Surname can't be empty",
+               'price'=>"Price can't be empty",
+               'length'=>"Length can't be empty"
+           );
 
-    public function Usedcolthing(Request $request,$id){
-        $messages = array(
-            'title'=>"Title field can't be empty",
-            'mainname'=>"Surname can't be empty",
-            'price'=>"Price can't be empty",
-            'length'=>"Length can't be empty"
-        );
-
-        $rules = array(
-            'title'=>'required',
-            'firstname'=>'required',
-            'mainname'=>'required',
-            'price'=>'required',
-            'length'=>'required',
-        );
-        $validator = $request->validate($rules,$messages);
+           $rules = array(
+               'title'=>'required',
+               'firstname'=>'required',
+               'mainname'=>'required',
+               'price'=>'required',
+               'length'=>'required',
+           );
+           $validator = $request->validate($rules,$messages);
 
 
-        $wardrobe = Wardrobe::find($id);
-        $used = new UsedClothing($wardrobe);
-        $used-> title = $request->input('title');
-        $used-> fname = $request->input('firstname');
-        $used-> sname = $request->input('mainname');
-        $used-> price = $request->input('price');
-        $used-> length = $request->input('length');
-        $used-> imagename = $request->file('imagename')->store('images');
+           $wardrobe = Wardrobe::find($id);
+           $used = new UsedClothing($wardrobe);
+           $used-> title = $request->input('title');
+           $used-> fname = $request->input('firstname');
+           $used-> sname = $request->input('mainname');
+           $used-> price = $request->input('price');
+           $used-> length = $request->input('length');
+           $used-> imagename = $request->file('imagename')->store('images');
 
-        $used->save();
-        return Redirect::to("pages.home");
+           $used->save();
+           return Redirect::to("pages.home");
 
-    }*/
+       }*/
 }
