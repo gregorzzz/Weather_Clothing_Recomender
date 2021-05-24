@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use App\Models\UsedClothing;
 use App\Models\Wardrobe;
 use Illuminate\Console\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Livewire\Response;
@@ -33,7 +35,8 @@ class wardrobeController extends Controller
      */
     public function create()
     {
-        return view('pages.create');
+        $materials = DB::table('materials')->pluck('material');
+        return view('pages.create', ['materials' => $materials]);
     }
 
     /**
@@ -127,6 +130,12 @@ class wardrobeController extends Controller
         $wardrobes = wardrobeController::find($id);
         $wardrobes->delete();
         return Redirect::to("wardrobe");
+    }
+
+    public function materials($id)
+    {
+        $materials = DB::table('materials')->pluck('material');
+        return view('pages.create', ['material' => $materials]);
     }
 
     public function selectColthing($id){
