@@ -146,32 +146,27 @@ class wardrobeController extends Controller
         return view('pages.recommendation', ['wardrobes'=>$wardrobes]);
 
     }
-    /* for used clothing still needs to be tested
+    // for used clothing still needs to be tested
        public function Usedclothing(Request $request,$id){
-           $res = file_get_contents("https://api.openweathermap.org/data/2.5/weather?lat=53.992119&lon=-1.541812&appid=8edbfcf3c0d0badddb4b1a4adcfaf403&units=metric");
-           $data = \GuzzleHttp\json_decode($res);
-
-           foreach ($data->weather as $weather){
-               $weatherType = $weather->description;
-               $temp = implode(', ', $weather->temp);
-               UsedClothing::updateOrCreate([
-                   'description' => $weatherType,
-                   '$temps' => $temp
-               ]);
-           }
-
-
+           $app_id = config("MIX_OPENWEATHER_KEY");
+           $lat = 53.992119;
+           $lng = -1.541812;
+           $url = file_get_contents("https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${app_id}&units=metric");
+           $data =json_decode($url,true);
 
            $wardrobe = Wardrobe::find($id);
            $used = new UsedClothing($wardrobe);
            $used->userID = Auth::user()->id;
            $used->clothingID = $wardrobe->id;
-           $used->weather =
+           $used->weatherType = $data['weather'][0]['description'];
+           $used->weatherTemp = $data['main']['temp'];
+           $used->useRating = $request->input('rating');
+           $used->useFeel = $request->input('feel');
 
 
            $used->save();
            return Redirect::to("pages.home");
 
        }
-    */
+
 }
