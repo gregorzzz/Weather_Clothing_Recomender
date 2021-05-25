@@ -57,7 +57,7 @@
     </div>
 </div>
 <div>
-    @yield('create')
+    @yield('createButton')
     @yield('content')
 </div>
 </body>
