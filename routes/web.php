@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('pages.home');
 })->name('dashboard');
 
 Route::get('/wardrobe', [wardrobeController::class,'index'])->name('wardrobe-index');
