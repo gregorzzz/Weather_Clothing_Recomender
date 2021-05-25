@@ -147,17 +147,18 @@ class wardrobeController extends Controller
 
     }
     // for used clothing still needs to be tested
-       public function Usedclothing(Request $request,$id){
+       public function Usedclothing(Request $request, $id=''){
            $app_id = "8edbfcf3c0d0badddb4b1a4adcfaf403";
            $lat = 53.992119;
            $lng = -1.541812;
            $url = file_get_contents("https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${app_id}&units=metric");
            $data =json_decode($url,true);
 
-           $wardrobe = Wardrobe::find($id);
+
+           $wardrobe = Wardrobe::select('id')->get();
            $used = new UsedClothing();
            $used->userID = Auth::user()->id;
-           $used->clothingID = $wardrobe->id;
+           $used->clothingID = $wardrobe;
            $used->weatherType = $data['weather'][0]['description'];
            $used->weatherTemp = $data['main']['temp'];
            $used->useRating = $request->input('rating');
