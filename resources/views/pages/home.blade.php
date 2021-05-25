@@ -31,10 +31,20 @@
                         <li class="nav-item">
                             @if(Route::current())
                                 @can('open-wardrobe')
+                                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{route("suggest")}}">
+                                        Get Suggestion
+                                    </a>
+                                @endcan
+                            @endif
+                        </li>
+                        <li class="nav-item">
+                            @if(Route::current())
+                                @can('open-wardrobe')
                                     <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="{{route("wardrobe-index")}}">
                                         Wardrobe
                                     </a>
-                                @endcan
+
+                                    @endcan
                             @endif
                         </li>
                         <li class="nav-item">
