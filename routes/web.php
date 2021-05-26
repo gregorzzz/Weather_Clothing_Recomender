@@ -35,8 +35,12 @@ Route::delete('/wardrobe/{id}',[wardrobeController::class,'destroy']);
 
 
 //Route::get("/recommendation/{id}", [wardrobeController::class, 'Usedclothing'])->name('suggest');
+
+
 Route::post("/recommendation/{id?}", [wardrobeController::class, 'Usedclothing'])->name('suggest');
 Route::get("/recommendation/{id?}", [wardrobeController::class, 'selectClothing'])->name('suggest');
+
+
 //Route::post("/recommendation/{id}", [wardrobeController::class, 'selectClothing'])->name('suggest');
 
 Route::get('materials','wardrobeController@materials');
