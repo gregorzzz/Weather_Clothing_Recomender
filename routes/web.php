@@ -16,7 +16,7 @@ use \App\Http\Controllers\wardrobeController;
 
 Route::get('/', function () {
     return view('pages.home');
-});
+})->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('pages.home');
