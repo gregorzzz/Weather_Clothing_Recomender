@@ -140,7 +140,7 @@ class wardrobeController extends Controller
         return view('pages.create', ['material' => $materials]);
     }
 
-    public function selectClothing(){
+    public function selectClothing($id){
         $userid = Auth::id();
         $wardrobes = Wardrobe::where('user_id',$userid)->get()->random();
         return view('pages.recommendation', ['wardrobes'=>$wardrobes]);
