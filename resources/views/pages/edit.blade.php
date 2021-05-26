@@ -29,11 +29,11 @@
             <div class="md:flex md:items-center">
                 <div class="md:w-1/3"></div>
                 <div class="md:w-2/3">
-                    {{ Form::submit('Save', array('class' => 'bg-teal-400 text-white font-bold py-2 px-4 rounded-full float-right')) }}
+                    {{ Form::submit('Save', array('class' => 'bg-blue-500 text-white font-bold py-2 px-4 rounded-full float-right')) }}
                     {{ Form::close() }}
                     {{ Form::open(array('url' => 'wardrobe/' . $wardrobes->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Delete', array('class' => 'bg-teal-400 text-white font-bold py-2 px-4 rounded-full float-left')) }}
+                    {{ Form::submit('Delete', array('class' => 'bg-red-500 text-white font-bold py-2 px-4 rounded-full float-left')) }}
                     {{ Form::close() }}
                 </div>
             </div>
