@@ -2,7 +2,8 @@
 @section('content')
 
     <div class="flex justify-center px-8 py-2 m-2">
-
+        {{ HTML::ul($errors->all()) }}
+        {{ Form::open(array('route' => array('suggest',$wardrobes->id),'method' => 'POST','enctype'=>"multipart/form-data")) }}
         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
             <img class="object-contain h-auto w-full" src="{{asset($wardrobes->pictureId)}}">
             <div class="w-2/3 p-4">
@@ -34,5 +35,6 @@
                     {{ Form::close() }}
                 </div>
             </div>
+            {{ Form::close() }}
         </div>
 @endsection

@@ -168,7 +168,7 @@ class wardrobeController extends Controller
 
 
            $used->save();
-          dd($wardrobe);
+          //dd($wardrobe);
            return Redirect::to("pages.home");
 
        }
