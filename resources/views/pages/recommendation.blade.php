@@ -5,7 +5,7 @@
         {{ HTML::ul($errors->all()) }}
         {{ Form::open(array('route' => array('suggest',$wardrobes->id),'method' => 'POST','enctype'=>"multipart/form-data")) }}
         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-            <img class="object-contain h-auto w-full" src="{{asset($wardrobes->pictureId)}}">
+            <img class="object-contain h-auto w-full" src="{{asset($wardrobes->pictureId)}}"/>
             <div class="w-2/3 p-4">
                 <h1 class="text-gray-900 font-bold text-2xl">{{ $wardrobes->clothingName }}</h1>
                 <p class="mt-2 text-gray-600 text-sm">{{ $wardrobes->clothingType }}</p>

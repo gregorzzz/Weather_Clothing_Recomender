@@ -64,7 +64,7 @@ class wardrobeController extends Controller
         $wardrobes -> clothingType = $request->input('type');
         $wardrobes -> material = $request->input('material');
         $wardrobes -> clothingName = $request->input('name');
-        $wardrobes -> pictureId = $request->file('image')->store('images');
+        $wardrobes -> pictureId = $request->file('image')->store('images', 'public');
 
         $wardrobes->save();
         return Redirect::to("wardrobe");
@@ -140,14 +140,14 @@ class wardrobeController extends Controller
         return view('pages.create', ['material' => $materials]);
     }
 
-    public function selectClothing($id){
+    public function selectClothing($id=1){
         $userid = Auth::id();
         $wardrobes = Wardrobe::where('user_id',$userid)->get()->random();
         return view('pages.recommendation', ['wardrobes'=>$wardrobes]);
 
     }
     // for used clothing still needs to be tested
-       public function Usedclothing(Request $request, $id){
+       public function Usedclothing(Request $request, $id=1){
            $app_id = "8edbfcf3c0d0badddb4b1a4adcfaf403";
            $lat = 53.992119;
            $lng = -1.541812;
