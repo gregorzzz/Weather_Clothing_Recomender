@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class UsedClothing extends Model
 {
     use HasFactory;
+
+    public function clothing(){
+        return $this->hasMany('App\Models\Wardrobe');
+    }
 }

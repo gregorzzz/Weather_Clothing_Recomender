@@ -147,7 +147,7 @@ class wardrobeController extends Controller
 
     }
     // for used clothing still needs to be tested
-       public function Usedclothing(Request $request, $id=''){
+       public function Usedclothing(Request $request, $id){
            $app_id = "8edbfcf3c0d0badddb4b1a4adcfaf403";
            $lat = 53.992119;
            $lng = -1.541812;
@@ -155,10 +155,12 @@ class wardrobeController extends Controller
            $data =json_decode($url,true);
 
 
-           $wardrobe = Wardrobe::select('id')->get();
+           //$wardrobe = Wardrobe::where('id', $request->id)->get();
+          $wardrobe = Wardrobe::find($id);
+         // $item = explode(',', $wardrobe->attribute);
            $used = new UsedClothing();
            $used->userID = Auth::user()->id;
-           $used->clothingID = $wardrobe;
+           $used->clothingID = $wardrobe->id;
            $used->weatherType = $data['weather'][0]['description'];
            $used->weatherTemp = $data['main']['temp'];
            $used->useRating = $request->input('rating');
@@ -166,6 +168,7 @@ class wardrobeController extends Controller
 
 
            $used->save();
+          dd($wardrobe);
            return Redirect::to("pages.home");
 
        }

@@ -33,9 +33,10 @@ Route::patch('/wardrobe/{id}',[wardrobeController::class,'update'])->name('wardr
 Route::put('/wardrobe/{id}',[wardrobeController::class,'update'])->name('wardrobe.update');
 
 
-
-Route::post("/recommendation", [wardrobeController::class, 'Usedclothing'])->name('suggest');
-Route::get("/recommendation", [wardrobeController::class, 'selectClothing'])->name('suggest');
+//Route::get("/recommendation/{id}", [wardrobeController::class, 'Usedclothing'])->name('suggest');
+Route::post("/recommendation/{id}", [wardrobeController::class, 'Usedclothing'])->name('suggest');
+Route::get("/recommendation/{id}", [wardrobeController::class, 'selectClothing'])->name('suggest');
+//Route::post("/recommendation/{id}", [wardrobeController::class, 'selectClothing'])->name('suggest');
 
 Route::get('materials','wardrobeController@materials');
 

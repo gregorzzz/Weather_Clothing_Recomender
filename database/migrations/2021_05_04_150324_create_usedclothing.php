@@ -17,10 +17,11 @@ class CreateUsedclothing extends Migration
             $table->id();
             $table->integer('userID');
             $table->integer('clothingID');
-            $table->date('useDate');
-            $table->string('weather',255);
+            $table->string('weatherType',255);
+            $table->string('weatherTemp',255);
             $table->integer('useRating');
-            $table->string('useFeel',50);
+            $table->string('useFeel',255);
+            $table->timestamps();
         });
     }
 
