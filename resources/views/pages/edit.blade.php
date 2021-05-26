@@ -31,7 +31,7 @@
                 <div class="md:w-2/3">
                     {{ Form::submit('Save', array('class' => 'bg-teal-400 text-white font-bold py-2 px-4 rounded-full float-right')) }}
                     {{ Form::close() }}
-                    {{ Form::open(array('url' => 'product/' . $wardrobes->id, 'class' => 'pull-right')) }}
+                    {{ Form::open(array('url' => 'wardrobe/' . $wardrobes->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Delete', array('class' => 'bg-teal-400 text-white font-bold py-2 px-4 rounded-full float-left')) }}
                     {{ Form::close() }}

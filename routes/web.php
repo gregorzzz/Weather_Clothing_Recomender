@@ -31,6 +31,7 @@ Route::post('/wardrobe/{id}',[wardrobeController::class,'edit'])->name('edit');
 Route::get('/wardrobe/{id}',[wardrobeController::class,'edit'])->name('edit');
 Route::patch('/wardrobe/{id}',[wardrobeController::class,'update'])->name('wardrobe.update');
 Route::put('/wardrobe/{id}',[wardrobeController::class,'update'])->name('wardrobe.update');
+Route::delete('/wardrobe/{id}',[wardrobeController::class,'destroy']);
 
 
 //Route::get("/recommendation/{id}", [wardrobeController::class, 'Usedclothing'])->name('suggest');

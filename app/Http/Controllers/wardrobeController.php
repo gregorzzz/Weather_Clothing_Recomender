@@ -129,7 +129,7 @@ class wardrobeController extends Controller
      */
     public function destroy($id)
     {
-        $wardrobes = wardrobeController::find($id);
+        $wardrobes = Wardrobe::find($id);
         $wardrobes->delete();
         return Redirect::to("wardrobe");
     }
